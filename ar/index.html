@@ -30,7 +30,6 @@ function ClickRequestDeviceSensor(){
   });
 
   DeviceMotionEvent.requestPermission().then( function( response ){
-    alert("OK");
     if( response === 'granted' ){
       //. 許可された場合のみイベントハンドラを追加できる
       window.addEventListener( "devicemotion", deviceMotion );
@@ -78,6 +77,7 @@ function deviceMotion (e) {
   var aZ = e.accelerationIncludingGravity.z ;  
 
  drawBall();    
+ alert("Hihi");
  var txt = document.getElementById("test");   // データを表示するdiv要素の取得
     txt.innerHTML = "x: " + aX + "<br>"         // x軸の値
                   + "y: " + aY + "<br>"         // y軸の値
