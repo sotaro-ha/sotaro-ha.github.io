@@ -74,10 +74,7 @@ function deviceMotion (e) {
 
   var aX = e.accelerationIncludingGravity.x;  
   var aY = e.accelerationIncludingGravity.y;  
-  var aZ = e.accelerationIncludingGravity.z ;  
-
- drawBall();    
- alert("Hihi");
+  var aZ = e.accelerationIncludingGravity.z ;      
  var txt = document.getElementById("test");   // データを表示するdiv要素の取得
     txt.innerHTML = "x: " + aX + "<br>"         // x軸の値
                   + "y: " + aY + "<br>"         // y軸の値
