@@ -25,6 +25,18 @@ function ClickRequestDeviceSensor(){
   }).catch( function( e ){
     console.log( e );
   });
+  
+  DeviceMotionEvent.requestPermission().then( function( response ){
+    if( response === 'granted' ){
+      //. 許可された場合のみイベントハンドラを追加できる
+      window.addEventListener( "devicemotion", deviceMotion );
+      //. 画面上部のボタンを消す
+      $('#sensorrequest').css( 'display', 'none' );
+    }
+  }).catch( function( e ){
+    console.log( e );
+  });
+
 }
 
 if( window.DeviceOrientationEvent ){
@@ -52,12 +64,12 @@ function deviceOrientation( e ){
 
 function deviceMotion (e) {
   e.preventDefault();
-  
+
   var aX = e.accelerationIncludingGravity.x;  
   var aY = e.accelerationIncludingGravity.y;  
   var aZ = e.accelerationIncludingGravity.z;  
 
- var txt = document.getElementById("txt");   // データを表示するdiv要素の取得
+ var txt = document.getElementById("test");   // データを表示するdiv要素の取得
     txt.innerHTML = "x: " + aX + "<br>"         // x軸の値
                   + "y: " + aY + "<br>"         // y軸の値
                   + "z: " + aZ;   
