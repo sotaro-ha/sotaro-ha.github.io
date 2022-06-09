@@ -25,8 +25,9 @@ function ClickRequestDeviceSensor(){
   }).catch( function( e ){
     console.log( e );
   });
-  
+
   DeviceMotionEvent.requestPermission().then( function( response ){
+    alert("OK");
     if( response === 'granted' ){
       //. 許可された場合のみイベントハンドラを追加できる
       window.addEventListener( "devicemotion", deviceMotion );
@@ -43,7 +44,6 @@ if( window.DeviceOrientationEvent ){
   if( DeviceOrientationEvent.requestPermission && typeof DeviceOrientationEvent.requestPermission === 'function' ){
     //. iOS 13 以上の場合、
     //. 画面上部に「センサーの有効化」ボタンを追加
-    alert("OK");
     var banner = '<button  style="z-index: 1; position: absolute; width: 100%; background-color: rgb(0, 0, 0);" onclick="ClickRequestDeviceSensor();" id="sensorrequest"><p style="color: rgb(255, 255, 255);">センサーの有効化</p></button>';
     $("body").prepend( banner );
   }else{
@@ -72,7 +72,7 @@ function deviceMotion (e) {
  var txt = document.getElementById("test");   // データを表示するdiv要素の取得
     txt.innerHTML = "x: " + aX + "<br>"         // x軸の値
                   + "y: " + aY + "<br>"         // y軸の値
-                  + "z: " + aZ;   
+                  + "z: " + aZ + 9.8;   
 }
 
 </script>
