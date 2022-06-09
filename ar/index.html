@@ -50,6 +50,7 @@ if( window.DeviceOrientationEvent ){
     var banner = '<button  style="z-index: 1; position: absolute; width: 100%; background-color: rgb(0, 0, 0);" onclick="ClickRequestDeviceSensor();" id="sensorrequest"><p style="color: rgb(255, 255, 255);">センサーの有効化</p></button>';
     $("body").prepend( banner );
   }else{
+    
   }
 }
 function deviceOrientation( e ){
@@ -66,7 +67,7 @@ function deviceOrientation( e ){
 }
 
 var timer = window.setInterval(() => {
-    drawBall();         // ★drawBall 関数を実行
+        // ★drawBall 関数を実行
 }, 33); // 33msごとに（1秒間に約30回）
 
 function deviceMotion (e) {
@@ -76,6 +77,7 @@ function deviceMotion (e) {
   var aY = e.accelerationIncludingGravity.y;  
   var aZ = e.accelerationIncludingGravity.z ;  
 
+ drawBall();    
  var txt = document.getElementById("test");   // データを表示するdiv要素の取得
     txt.innerHTML = "x: " + aX + "<br>"         // x軸の値
                   + "y: " + aY + "<br>"         // y軸の値
