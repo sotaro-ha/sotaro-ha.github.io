@@ -65,21 +65,19 @@ function deviceOrientation( e ){
                   + "前後: " + lr;        
 }
 
-var timer = window.setInterval(() => {
-        // ★drawBall 関数を実行
-}, 33); // 33msごとに（1秒間に約30回）
-
 function deviceMotion (e) {
   e.preventDefault();
-
+  drawBall();
   var aX = e.accelerationIncludingGravity.x;  
   var aY = e.accelerationIncludingGravity.y;  
   var aZ = e.accelerationIncludingGravity.z ;      
- var txt = document.getElementById("test");   // データを表示するdiv要素の取得
-    txt.innerHTML = "x: " + aX + "<br>"         // x軸の値
+  var txt = document.getElementById("test");   // データを表示するdiv要素の取得
+  txt.innerHTML = "x: " + aX + "<br>"         // x軸の値
                   + "y: " + aY + "<br>"         // y軸の値
                   + "z: " + aZ ;   
 }
+
+
 
 function drawBall() {
     var centerX = canvas.width  / 2;            // canvasの中心のX座標
