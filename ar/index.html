@@ -10,8 +10,11 @@
 <body>
 <div id ="test">こんにちは</div>
 <canvas id="canvas" width="300" height="400"></canvas> 
- 
+
 <script>
+var canvas = document.getElementById('canvas'); // ★canvas要素を取得 
+var context = canvas.getContext('2d');   
+
 function ClickRequestDeviceSensor(){
   //. ユーザーに「許可」を求めるダイアログを表示
   DeviceOrientationEvent.requestPermission().then( function( response ){
@@ -61,6 +64,10 @@ function deviceOrientation( e ){
                   + "左右: " + fb + "<br>"         // y軸の値
                   + "前後: " + lr;        
 }
+
+var timer = window.setInterval(() => {
+    drawBall();         // ★drawBall 関数を実行
+}, 33); // 33msごとに（1秒間に約30回）
 
 function deviceMotion (e) {
   e.preventDefault();
