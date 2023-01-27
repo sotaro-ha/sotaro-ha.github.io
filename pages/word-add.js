@@ -15,7 +15,7 @@ export default function Home() {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const fetchFirstExist = async (word) => {
-        const response = await fetch("./api/exist", {
+        const response = await fetch("/api/exist", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export default function Home() {
         setFirstExist(data.bool)
     }
     const fetchSecondExist = async (word) => {
-        const response = await fetch("./api/exist", {
+        const response = await fetch("/api/exist", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export default function Home() {
     }
     const fetchAnswer = async (word1, word2) => {
         setLoading(true);
-        const response = await fetch("./api/answer", {
+        const response = await fetch("/api/answer", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export default function Home() {
     }
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await fetch('./api/word2vec')
+            const response = await fetch('/api/word2vec')
             const data = await response.json()
             setUsers(data.vector)
         }
