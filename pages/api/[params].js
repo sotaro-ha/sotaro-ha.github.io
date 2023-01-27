@@ -3,7 +3,7 @@ import path from 'path';
 //create data set
 let data = [];
 let name = [];
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < 1; i++) {
   const file = path.join(process.cwd(), "public", "data_" + i + ".txt");
   data = data.concat(readFileSync(file, "utf-8").split("\n"));
 }
