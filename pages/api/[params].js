@@ -4,7 +4,7 @@ import path from 'path';
 let data = [];
 let name = [];
 for (let i = 0; i < 2; i++) {
-  const file = path.join(process.cwd(), "/data_" + i + ".txt");
+  const file = path.join(process.cwd(), "/var/task/.next/server/public/data_" + i + ".txt");
   data = data.concat(fs.readFileSync(file, "utf-8").split("\n"));
 }
 function refineData(data) {
