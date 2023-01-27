@@ -1,10 +1,11 @@
 import * as fs from 'fs'
-
+import path from 'path';
 //create data set
 let data = [];
 let name = [];
 for (let i = 0; i < 2; i++) {
-  data = data.concat(fs.readFileSync("https://sotaro-portfolio.vercel.app/data_" + i + ".txt", "utf-8").split("\n"));
+  const file = path.join(process.cwd(), "/data_" + i + ".txt");
+  data = data.concat(fs.readFileSync(file, "utf-8").split("\n"));
 }
 function refineData(data) {
   [...Array(data.length)].map((_, i) => data[i] = data[i].split(" "));
