@@ -15,7 +15,6 @@ function refineData(data) {
   return data
 }
 data = refineData(data)
-
 export default function handler(req, res) {
   const { params } = req.query
   if (params === "word2vec") {
@@ -33,17 +32,19 @@ export default function handler(req, res) {
     const vector2 = data[word2Index];
     const vector3 = Array(vector1.length);
     [...Array(vector1.length)].map((_, i) => vector3[i] = vector1[i] - vector2[i]);
-    [...Array(data.length)].map((_, i) => {
+    [...Array(data.length-1)].map((_, i) => {
       distance = 0;
-      [...Array(vector1.length)].map((_, j) => {
-        distance += (vector3[j] - data[i][j]) * (vector3[j] - data[i][j])
+      [...Array(vector3.length-1)].map((_, j) => {
+        distance += (vector3[j] - data[i][j]) * (vector3[j] - data[i][j]);
+        if(!vector3[j]){
+          console.log(i,j,vector3.length,data[i].length)
+        }
       }
       )
-      if (distance < min[0] && i != name.indexOf(word1) && i != name.indexOf(word2)) {
+      if (distance < min[0] && i !== word1Index && i != word2Index) {
         min = [distance, i]
       }
-    }
-    )
+    })
     res.status(200).json({ answer: name[min[1]] });
   }
 }
