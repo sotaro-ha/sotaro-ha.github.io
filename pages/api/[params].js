@@ -1,10 +1,11 @@
-import * as fs from 'fs'
+import { readFileSync } from 'fs';
 import path from 'path';
 //create data set
 let data = [];
 let name = [];
 for (let i = 0; i < 2; i++) {
-  data = data.concat(fs.readFileSync("var/task/.next/server/pages/data_" + i + ".txt", "utf-8").split("\n"));
+  const file = path.join(process.cwd(), "public", "data_" + i + ".txt");
+  data = data.concat(readFileSync(file, "utf-8").split("\n"));
 }
 function refineData(data) {
   [...Array(data.length)].map((_, i) => data[i] = data[i].split(" "));
