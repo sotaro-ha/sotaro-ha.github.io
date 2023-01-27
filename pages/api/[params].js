@@ -4,7 +4,7 @@ import * as fs from 'fs'
 let data = [];
 let name = [];
 for (let i = 0; i < 2; i++) {
-  data = data.concat(fs.readFileSync("/data_" + i + ".txt", "utf-8").split("\n"));
+  data = data.concat(fs.readFileSync("https://sotaro-portfolio.vercel.app/data_" + i + ".txt", "utf-8").split("\n"));
 }
 function refineData(data) {
   [...Array(data.length)].map((_, i) => data[i] = data[i].split(" "));
