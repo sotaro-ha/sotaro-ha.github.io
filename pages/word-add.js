@@ -14,6 +14,7 @@ export default function Home() {
     const [error, setError] = useState(false);
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [init , setInit] = useState(true);
     const fetchFirstExist = async (word) => {
         const response = await fetch("/api/exist", {
             method: 'POST',
@@ -52,6 +53,8 @@ export default function Home() {
         const data = await response.json()
         setFirstValue(data.vector[0])
         setSecondValue(data.vector[1])
+        setFirstExist(true);
+        setSecondExist(true);
     }
     useEffect(() => {
         const fetchUsers = async () => {
