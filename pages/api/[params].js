@@ -29,21 +29,21 @@ export default function handler(req, res) {
     const word1Index = name.indexOf(word1);
     const word2Index = name.indexOf(word2);
     const vector1 = data[word1Index];
-    const vector2 = data[word2Index];
+    //const vector2 = data[word2Index];
+    const vector2 = Array(vector1.length);
+    [...Array(vector1.length)].map((_, i) => vector2[i] = 0);
     const vector3 = Array(vector1.length);
     [...Array(vector1.length)].map((_, i) => vector3[i] = vector1[i] - vector2[i]);
     [...Array(data.length - 1)].map((_, i) => {
       distance = 0;
       [...Array(vector3.length - 1)].map((_, j) => {
         distance += (vector3[j] - data[i][j]) * (vector3[j] - data[i][j]);
-        if (!vector3[j]) {
-          console.log(i, j, vector3.length, data[i].length)
-        }
       }
       )
       if (distance < min[0] && i !== word1Index && i != word2Index) {
         min = [distance, i]
       }
+      
     })
     res.status(200).json({ answer: name[min[1]] });
   }

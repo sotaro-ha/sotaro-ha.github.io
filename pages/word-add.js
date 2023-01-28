@@ -117,7 +117,6 @@ export default function Home() {
                 open={init}
                 autoHideDuration={6000}
                 onClose={handleClose}
-                message="データ準備中"
             >
                 <Alert severity="success">データ準備中...</Alert>
             </Snackbar>
