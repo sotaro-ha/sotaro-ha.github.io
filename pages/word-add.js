@@ -62,7 +62,8 @@ export default function Home() {
             const data = await response.json()
             setUsers(data.vector)
         }
-        fetchUsers(firstExist)
+        fetchUsers()
+        setInit(false);
     }, [])
     const handleFirstChange = (e) => {
         setFirstValue(e.target.value);
@@ -75,6 +76,7 @@ export default function Home() {
     const handleClose = (e) => {
         setError(false);
         setOpen(false);
+        setInit(false);
     }
     const handleSubmit = (e) => {
         if (firstExist && secondExist) {
@@ -85,7 +87,6 @@ export default function Home() {
     }
     return (
         <div className={styles.container}>
-
             <Box sx={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Box>
                     <Box sx={{ display: "flex", justifyContent: "center", padding: "32px" }}>
@@ -111,6 +112,14 @@ export default function Home() {
                 message="計算成功！"
             >
                 <Alert severity="success">計算完了！</Alert>
+            </Snackbar>
+            <Snackbar
+                open={init}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                message="データ準備中"
+            >
+                <Alert severity="success">データ準備中...</Alert>
             </Snackbar>
             <Snackbar
                 open={error}
