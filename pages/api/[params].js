@@ -4,7 +4,7 @@ import path from 'path';
 let data = [];
 let name = [];
 for (let i = 0; i < 1; i++) {
-  const file = path.join(process.cwd(), "public", "data_" + i + ".txt");
+  const file = path.join(process.cwd(), "public", "data.txt");
   data = data.concat(readFileSync(file, "utf-8").split("\n"));
 }
 function refineData(data) {
@@ -32,12 +32,12 @@ export default function handler(req, res) {
     const vector2 = data[word2Index];
     const vector3 = Array(vector1.length);
     [...Array(vector1.length)].map((_, i) => vector3[i] = vector1[i] - vector2[i]);
-    [...Array(data.length-1)].map((_, i) => {
+    [...Array(data.length - 1)].map((_, i) => {
       distance = 0;
-      [...Array(vector3.length-1)].map((_, j) => {
+      [...Array(vector3.length - 1)].map((_, j) => {
         distance += (vector3[j] - data[i][j]) * (vector3[j] - data[i][j]);
-        if(!vector3[j]){
-          console.log(i,j,vector3.length,data[i].length)
+        if (!vector3[j]) {
+          console.log(i, j, vector3.length, data[i].length)
         }
       }
       )

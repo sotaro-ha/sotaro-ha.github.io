@@ -47,6 +47,12 @@ export default function Home() {
         setLoading(false);
         setAnswer(data.answer)
     }
+    const handleRandom = async () => {
+        const response = await fetch('/api/word2vec')
+        const data = await response.json()
+        setFirstValue(data.vector[0])
+        setSecondValue(data.vector[1])
+    }
     useEffect(() => {
         const fetchUsers = async () => {
             const response = await fetch('/api/word2vec')
@@ -83,11 +89,12 @@ export default function Home() {
                         <Typography sx={{ fontSize: "24px", fontWeight: "bold" }}>文字の足し引き (例:女王-王)</Typography>
                     </Box>
                     <Box sx={{ display: "flex", justifyContent: "center" }}>
-                        <TextField onChange={handleFirstChange} error={!firstExist} placeholder={users[0]} ></TextField>
+                        <TextField onChange={handleFirstChange} error={!firstExist} placeholder={users[0]} value={firstValue}></TextField>
                         <p>-</p>
-                        <TextField onChange={handleSecondChange} error={!secondExist} placeholder={users[1]}></TextField>
+                        <TextField onChange={handleSecondChange} error={!secondExist} placeholder={users[1]} value={secondValue}></TextField>
                         <p>=</p>
                         <Button variant="contained" onClick={handleSubmit}>計算する</Button>
+                        <Button variant="contained" onClick={handleRandom} color="success" sx={{ mx: "16px" }}>ランダム</Button>
                     </Box>
                     <Box sx={{ display: "flex", justifyContent: "center", padding: "32px" }}>
                         <Typography sx={{ fontSize: "32px", fontWeight: "bold" }}>答え:{loading ? "計算中..." : answer}</Typography>
