@@ -29,9 +29,7 @@ export default function handler(req, res) {
     const word1Index = name.indexOf(word1);
     const word2Index = name.indexOf(word2);
     const vector1 = data[word1Index];
-    //const vector2 = data[word2Index];
-    const vector2 = Array(vector1.length);
-    [...Array(vector1.length)].map((_, i) => vector2[i] = 0);
+    const vector2 = data[word2Index];
     const vector3 = Array(vector1.length);
     [...Array(vector1.length)].map((_, i) => vector3[i] = vector1[i] - vector2[i]);
     [...Array(data.length - 1)].map((_, i) => {
