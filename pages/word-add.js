@@ -5,7 +5,7 @@ import { Box, TextField, Button, Typography, Snackbar, Alert } from "@mui/materi
 import { useState, useEffect } from 'react'
 
 export default function Home() {
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState(["データ準備中...", "データ準備中..."])
     const [firstExist, setFirstExist] = useState(false)
     const [firstValue, setFirstValue] = useState("")
     const [secondExist, setSecondExist] = useState(false)
@@ -14,7 +14,7 @@ export default function Home() {
     const [error, setError] = useState(false);
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [init , setInit] = useState(true);
+    const [init, setInit] = useState(true);
     const fetchFirstExist = async (word) => {
         const response = await fetch("/api/exist", {
             method: 'POST',
